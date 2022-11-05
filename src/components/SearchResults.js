@@ -3,11 +3,12 @@ import moment from "moment";
 
 const SearchResults = props => {
   const fakeBookings = props.results;
-  const [color, setColor] = useState("none");
+  const [clickedRow, setClickedRow] = useState();
   const [light, setLight] = useState("red");
 
-  function highlighted() {
-    setColor("red");
+  function highlighted(index) {
+    setClickedRow(index);
+    console.log(clickedRow);
   }
 
   return (
@@ -31,7 +32,11 @@ const SearchResults = props => {
           const checkOut = moment(booking.checkOutDate);
           const calculate = checkOut.diff(checkIn, "days");
           return (
-            <tr onClick={highlighted} key={index}>
+            <tr
+              key={index}
+              onClick={() => highlighted(index)}
+              className={clickedRow == index ? "highlight" : null}
+            >
               <td>{booking.id}</td>
               <td>{booking.title}</td>
               <td>{booking.firstName}</td>
