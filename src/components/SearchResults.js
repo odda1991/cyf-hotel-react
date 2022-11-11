@@ -4,7 +4,6 @@ import moment from "moment";
 const SearchResults = props => {
   const fakeBookings = props.results;
   const [clickedRow, setClickedRow] = useState();
-  const [light, setLight] = useState("red");
 
   function highlighted(index) {
     setClickedRow(index);
